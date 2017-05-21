@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.codehaus.jackson:jackson-xc:1.9.13">
+    <CLASSES>
+      <root url="jar://$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3/repos/org/codehaus/jackson/jackson-xc/1.9.13/jackson-xc-1.9.13.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3/repos/org/codehaus/jackson/jackson-xc/1.9.13/jackson-xc-1.9.13-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3/repos/org/codehaus/jackson/jackson-xc/1.9.13/jackson-xc-1.9.13-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
