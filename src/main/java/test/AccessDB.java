@@ -19,7 +19,7 @@ public class AccessDB {
 //        for (DataItem dataItem : dataItems) {
 //            System.out.println(dataItem.toString());
 //        }
-        //JDBCHelper helper = JDBCHelper.getInstanse();
+        JDBCHelper.getInstanse();
 
         long startMili = System.currentTimeMillis();
         TaskGetUser task = new TaskGetUser();
