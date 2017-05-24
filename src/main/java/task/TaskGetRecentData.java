@@ -1,24 +1,26 @@
 package task;
 
 import conf.ConfigurationManager;
-import dataStructs.DataItem;
 import constants.Constants;
+import dataStructs.DataItem;
+import scala.runtime.StringFormat;
 import util.JDBCHelper;
 
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2017-05-21.
+ * Created by Administrator on 2017-05-23.
  */
-public class TaskGetData {
+public class TaskGetRecentData {
     private ArrayList<DataItem> dataItems;
     private ArrayList<Integer> startRowIDs;
     private ArrayList<Integer> endRowIDs;
     private ArrayList<String> tableNames;
 
-    public TaskGetData(ArrayList<String> tableNames) {
+    public TaskGetRecentData(ArrayList<String> tableNames) {
         this.tableNames = tableNames;
         dataItems = new ArrayList<DataItem>();
         startRowIDs = new ArrayList<Integer>();
@@ -38,11 +40,18 @@ public class TaskGetData {
     }
 
     //查找出记录并将对象给出去方便链式调用
-    public TaskGetData run() {
+    public TaskGetRecentData run() {
         JDBCHelper helper = JDBCHelper.getInstanse();
         Callback callback = new Callback();
-        for (String name : tableNames) {
-            String sql = String.format("select * from %s", name);
+
+        SimpleDateFormat dataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date curDate = new Date();
+        Date startDate = new Date(curDate.getTime() - Integer.parseInt(ConfigurationManager.getProperty(Constants.PULL_INTERVAL)) * 1000);
+        String strCurDate = dataFormat.format(curDate);
+        String strStartDate = dataFormat.format(startDate);
+
+        for (String tableName : tableNames) {
+            String sql = String.format("select * from %s where date between '%s' and '%s'", tableName, strStartDate, strCurDate);
             helper.executeQuery(sql, null, callback);
         }
 

@@ -18,7 +18,9 @@ public class Constants {
     public static final String JDBC_USER_PROD = "jdbc_user_prod";
     public static final String JDBC_PASSWORD_PROD = "jdbc_password_prod";
     //临时表
-    public static final String TABLE_DATA = "table_data";
-    public static final String TABLE_DATA_DETAIL = "table_data_detail";
     public static final String TABLE_USER = "table_user";
+    public static final String  TABLE_EQUIPMENT =   "table_equipment";
+    //运行参数
+    public static final String PROCCESS_INTERVAL = "proccess_interval";
+    public static final String PULL_INTERVAL = "pull_interval";
 }

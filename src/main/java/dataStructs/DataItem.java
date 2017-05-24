@@ -1,6 +1,6 @@
 package dataStructs;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by Administrator on 2017-05-20.
@@ -12,7 +12,7 @@ public class DataItem {
     private int rate;
     private String wssid;
     private String wmac;
-    private Date date;
+    private Timestamp date;
     private float lat;
     private float lon;
     private String addr;
@@ -22,7 +22,7 @@ public class DataItem {
 
     }
 
-    public DataItem(int rowID, int id, String mmac, int rate, String wssid, String wmac, Date date, float lat, float lon, String addr) {
+    public DataItem(int rowID, int id, String mmac, int rate, String wssid, String wmac, Timestamp date, float lat, float lon, String addr) {
         this.rowID = rowID;
         this.id = id;
         this.mmac = mmac;
@@ -83,11 +83,11 @@ public class DataItem {
         this.wmac = wmac;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
