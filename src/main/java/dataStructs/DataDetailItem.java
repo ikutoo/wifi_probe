@@ -195,5 +195,24 @@ public class DataDetailItem {
                 ", essid6='" + essid6 + '\'' +
                 '}';
     }
+
+    public String toString2() {
+        return rowID +
+                "," + masterID +
+                "," + dateTime +
+                "," + mac +
+                "," + rssi +
+                "," + range +
+                "," + ts +
+                "," + tc +
+                "," + tmc +
+                "," + ds +
+                "," + essid1 +
+                "," + essid2 +
+                "," + essid3 +
+                "," + essid4 +
+                "," + essid5 +
+                "," + essid6;
+    }
 }
 

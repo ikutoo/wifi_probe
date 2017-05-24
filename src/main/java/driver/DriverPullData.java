@@ -22,13 +22,16 @@ public class DriverPullData {
         Timer timer = new Timer();
         TimerPullData timerPullData = new TimerPullData();
         JDBCHelper.getInstanse();
-        
+
         timer.schedule(timerPullData, 0, 1000 * Integer.parseInt(ConfigurationManager.getProperty(Constants.PULL_INTERVAL)));
     }
 
     public static class TimerPullData extends TimerTask {
         @Override
         public void run() {
+            ArrayList<String> strData = new ArrayList<String>();
+            ArrayList<String> strDataDetail = new ArrayList<String>();
+
             long startMili = System.currentTimeMillis();
             //task0////////////////////////////////////////////////////////////////////////
             ArrayList<String> tableNames = new ArrayList<String>();
@@ -40,7 +43,7 @@ public class DriverPullData {
 
             ArrayList<Equipment> equipments = task0.getEquipments();
             for (Equipment equipment : equipments) {
-                System.out.println(equipment.toString());
+                //System.out.println(equipment.toString());
                 tableNames.add(equipment.getEquipment());
             }
             ////////////////////////////////////////////////////////////////////////
@@ -56,7 +59,8 @@ public class DriverPullData {
             ArrayList<Integer> endRowIDs = task1.getEndRowIDs();
             ArrayList<DataItem> dataItems = task1.getDataItems();
             for (DataItem dataItem : dataItems) {
-                System.out.println(dataItem.toString());
+                //System.out.println(dataItem.toString2());
+                strData.add(dataItem.toString2());
             }
             ////////////////////////////////////////////////////////////////////////
 
@@ -69,11 +73,19 @@ public class DriverPullData {
 
             ArrayList<DataDetailItem> dataDetailItems = task2.getDataItems();
             for (DataDetailItem dataItem : dataDetailItems) {
-                System.out.println(dataItem.toString());
+                //System.out.println(dataItem.toString2());
+                strDataDetail.add(dataItem.toString2());
             }
             ////////////////////////////////////////////////////////////////////////
             long endMili = System.currentTimeMillis();
             System.out.println("所有任务总耗时为：" + (endMili - startMili) + "毫秒");
+
+            for (String str : strData) {
+                System.out.println(str);
+            }
+            for (String str : strDataDetail) {
+                System.out.println(str);
+            }
         }
     }
 }

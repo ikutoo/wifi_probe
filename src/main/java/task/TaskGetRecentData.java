@@ -64,7 +64,7 @@ public class TaskGetRecentData {
             int startItem = dataItems.size();
             while (rs.next()) {
                 int rowID = rs.getInt(1);
-                int id = rs.getInt(2);
+                String id = rs.getString(2);
                 String mmac = rs.getString(3);
                 int rate = rs.getInt(4);
                 String wssid = rs.getString(5);
@@ -78,8 +78,13 @@ public class TaskGetRecentData {
                 dataItems.add(dItem);
             }
             int endItem = dataItems.size() - 1;
-            startRowIDs.add(dataItems.get(startItem).getRowID());
-            endRowIDs.add(dataItems.get(endItem).getRowID());
+            if (endItem >= startItem) {
+                startRowIDs.add(dataItems.get(startItem).getRowID());
+                endRowIDs.add(dataItems.get(endItem).getRowID());
+            } else {
+                startRowIDs.add(-1);
+                endRowIDs.add(-1);
+            }
         }
     }
 }

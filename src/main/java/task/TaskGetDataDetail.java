@@ -34,7 +34,8 @@ public class TaskGetDataDetail {
         TaskGetDataDetail.Callback callback = new TaskGetDataDetail.Callback();
 
         for (int i = 0; i < tableNames.size(); ++i) {
-            String sql = String.format("select * from %s where master_id between %d and %d", tableNames.get(i)+"_detail", startRowIDs.get(i), endRowIDs.get(i));
+            if (startRowIDs.get(i) == -1) continue;
+            String sql = String.format("select * from %s where master_id between %d and %d", tableNames.get(i) + "_detail", startRowIDs.get(i), endRowIDs.get(i));
             helper.executeQuery(sql, null, callback);
         }
         return this;

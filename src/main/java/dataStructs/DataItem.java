@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  */
 public class DataItem {
     private int rowID;
-    private int id;
+    private String id;
     private String mmac;
     private int rate;
     private String wssid;
@@ -22,7 +22,7 @@ public class DataItem {
 
     }
 
-    public DataItem(int rowID, int id, String mmac, int rate, String wssid, String wmac, Timestamp date, float lat, float lon, String addr) {
+    public DataItem(int rowID, String id, String mmac, int rate, String wssid, String wmac, Timestamp date, float lat, float lon, String addr) {
         this.rowID = rowID;
         this.id = id;
         this.mmac = mmac;
@@ -43,11 +43,11 @@ public class DataItem {
         this.rowID = rowID;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -119,7 +119,7 @@ public class DataItem {
     public String toString() {
         return "DataItem{" +
                 "rowID=" + rowID +
-                ", id=" + id +
+                ", id='" + id + '\'' +
                 ", mmac='" + mmac + '\'' +
                 ", rate=" + rate +
                 ", wssid='" + wssid + '\'' +
@@ -129,5 +129,18 @@ public class DataItem {
                 ", lon=" + lon +
                 ", addr='" + addr + '\'' +
                 '}';
+    }
+
+    public String toString2() {
+        return rowID +
+                "," + id +
+                "," + mmac +
+                "," + rate +
+                "," + wssid +
+                "," + wmac +
+                "," + date +
+                "," + lat +
+                "," + lon +
+                "," + addr;
     }
 }

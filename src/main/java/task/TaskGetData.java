@@ -55,7 +55,7 @@ public class TaskGetData {
             int startItem = dataItems.size();
             while (rs.next()) {
                 int rowID = rs.getInt(1);
-                int id = rs.getInt(2);
+                String id = rs.getString(2);
                 String mmac = rs.getString(3);
                 int rate = rs.getInt(4);
                 String wssid = rs.getString(5);
