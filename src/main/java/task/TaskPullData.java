@@ -12,7 +12,6 @@ import java.util.ArrayList;
  */
 public class TaskPullData {
     private ArrayList<String> mDataItems;
-
     private ArrayList<String> mDataDetailItems;
 
     public TaskPullData() {
@@ -30,15 +29,13 @@ public class TaskPullData {
 
     public void run() {
         long startMili = System.currentTimeMillis();
-        System.out.println("//////////enter TaskPullData////////////////////////////////////////////");
+        System.out.println("//////////enter TaskPullData//////////");
 
         //task0////////////////////////////////////////////////////////////////////////
         ArrayList<String> tableNames = new ArrayList<String>();
-        long startMili0 = System.currentTimeMillis();
+
         TaskGetEquipments task0 = new TaskGetEquipments();
         task0.run();
-        long endMili0 = System.currentTimeMillis();
-        System.out.println("task0总耗时为：" + (endMili0 - startMili0) + "毫秒");
 
         ArrayList<Equipment> equipments = task0.getEquipments();
         for (Equipment equipment : equipments) {
@@ -48,11 +45,9 @@ public class TaskPullData {
         ////////////////////////////////////////////////////////////////////////
 
         //task1////////////////////////////////////////////////////////////////////////
-        long startMili1 = System.currentTimeMillis();
+
         TaskGetRecentData task1 = new TaskGetRecentData(tableNames);
         task1.run();
-        long endMili1 = System.currentTimeMillis();
-        System.out.println("task1总耗时为：" + (endMili1 - startMili1) + "毫秒");
 
         ArrayList<Integer> startRowIDs = task1.getStartRowIDs();
         ArrayList<Integer> endRowIDs = task1.getEndRowIDs();
@@ -64,11 +59,9 @@ public class TaskPullData {
         ////////////////////////////////////////////////////////////////////////
 
         //task2////////////////////////////////////////////////////////////////////////
-        long startMili2 = System.currentTimeMillis();
+
         TaskGetDataDetail task2 = new TaskGetDataDetail(startRowIDs, endRowIDs, tableNames);
         task2.run();
-        long endMili2 = System.currentTimeMillis();
-        System.out.println("task2总耗时为：" + (endMili2 - startMili2) + "毫秒");
 
         ArrayList<DataDetailItem> dataDetailItems = task2.getDataItems();
         for (DataDetailItem dataItem : dataDetailItems) {
@@ -77,12 +70,8 @@ public class TaskPullData {
         }
         ////////////////////////////////////////////////////////////////////////
 
-
-        System.out.println(mDataItems.size());
-        System.out.println(mDataDetailItems.size());
-
         long endMili = System.currentTimeMillis();
-        System.out.println("所有任务总耗时为：" + (endMili - startMili) + " 毫秒");
-        System.out.println("//////////leave TaskPullData////////////////////////////////////////////");
+        System.out.println("TaskPullData总耗时为：" + (endMili - startMili) + " 毫秒");
+        System.out.println("//////////leave TaskPullData///////////");
     }
 }
