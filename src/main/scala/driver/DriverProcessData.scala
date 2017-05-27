@@ -4,10 +4,8 @@ import java.util.Timer
 
 import conf.ConfigurationManager
 import constants.Constants
-import global.SparkManager
 import timer.TimerProcessData
 import util.JDBCHelper
-import utils.StreamingLogs
 
 /**
   * Created by Administrator on 2017-05-24.
@@ -15,11 +13,11 @@ import utils.StreamingLogs
 object DriverProcessData {
   def main(args: Array[String]): Unit = {
     //设置log等级
-    StreamingLogs.setStreamingLogLevels()
+   // StreamingLogs.setStreamingLogLevels()
 
     //为单例对象创建实例
     JDBCHelper.getInstanse()
-    SparkManager.getInstance()
+  //  SparkManager.getInstance()
 
     //执行定时任务
     val timer = new Timer

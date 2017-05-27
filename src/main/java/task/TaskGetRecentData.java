@@ -10,25 +10,27 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by Administrator on 2017-05-23.
  */
 public class TaskGetRecentData {
-    private ArrayList<DataItem> dataItems;
     private ArrayList<Integer> startRowIDs;
     private ArrayList<Integer> endRowIDs;
     private ArrayList<String> tableNames;
+    private String curTableName;
+    private HashMap<String, ArrayList<DataItem>> dataMap;
 
     public TaskGetRecentData(ArrayList<String> tableNames) {
         this.tableNames = tableNames;
-        dataItems = new ArrayList<DataItem>();
         startRowIDs = new ArrayList<Integer>();
         endRowIDs = new ArrayList<Integer>();
+        dataMap = new HashMap<String, ArrayList<DataItem>>();
     }
 
-    public ArrayList<DataItem> getDataItems() {
-        return dataItems;
+    public HashMap<String, ArrayList<DataItem>> getDataMap() {
+        return dataMap;
     }
 
     public ArrayList<Integer> getStartRowIDs() {
@@ -51,6 +53,7 @@ public class TaskGetRecentData {
         String strStartDate = dataFormat.format(startDate);
 
         for (String tableName : tableNames) {
+            curTableName = tableName;
             String sql = String.format("select * from %s where date between '%s' and '%s'", tableName, strStartDate, strCurDate);
             helper.executeQuery(sql, null, callback);
         }
@@ -61,6 +64,7 @@ public class TaskGetRecentData {
     class Callback implements JDBCHelper.QueryCallback {
 
         public void process(ResultSet rs) throws Exception {
+            ArrayList<DataItem> dataItems = new ArrayList<DataItem>();
             int startItem = dataItems.size();
             while (rs.next()) {
                 int rowID = rs.getInt(1);
@@ -85,6 +89,7 @@ public class TaskGetRecentData {
                 startRowIDs.add(-1);
                 endRowIDs.add(-1);
             }
+            dataMap.put(curTableName, dataItems);
         }
     }
 }

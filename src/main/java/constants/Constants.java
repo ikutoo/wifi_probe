@@ -23,4 +23,5 @@ public class Constants {
     //运行参数
     public static final String PROCCESS_INTERVAL = "proccess_interval";
     public static final String PULL_INTERVAL = "pull_interval";
+    public static final String INSTORE_DISTANCE = "instore_distance";
 }

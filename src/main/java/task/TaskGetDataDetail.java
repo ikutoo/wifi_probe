@@ -6,27 +6,28 @@ import util.JDBCHelper;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Administrator on 2017-05-24.
  */
 public class TaskGetDataDetail {
-    private ArrayList<DataDetailItem> dataItems;
+    private HashMap<String, ArrayList<DataDetailItem>> dataDetailMap;
     private ArrayList<Integer> startRowIDs;
     private ArrayList<Integer> endRowIDs;
     private ArrayList<String> tableNames;
+    private String curTableName;
 
     public TaskGetDataDetail(ArrayList<Integer> startRowIDs, ArrayList<Integer> endRowIDs, ArrayList<String> tableNames) {
         this.startRowIDs = startRowIDs;
         this.endRowIDs = endRowIDs;
         this.tableNames = tableNames;
-        dataItems = new ArrayList<DataDetailItem>();
+        dataDetailMap = new HashMap<String, ArrayList<DataDetailItem>>();
     }
 
-    public ArrayList<DataDetailItem> getDataItems() {
-        return dataItems;
+    public HashMap<String, ArrayList<DataDetailItem>> getDataDetailMap() {
+        return dataDetailMap;
     }
-
 
     //查找出记录并将对象给出去方便链式调用
     public TaskGetDataDetail run() {
@@ -34,7 +35,12 @@ public class TaskGetDataDetail {
         TaskGetDataDetail.Callback callback = new TaskGetDataDetail.Callback();
 
         for (int i = 0; i < tableNames.size(); ++i) {
-            if (startRowIDs.get(i) == -1) continue;
+            curTableName = tableNames.get(i);
+            if (startRowIDs.get(i) == -1) {
+                ArrayList<DataDetailItem> items = new ArrayList<DataDetailItem>();
+                dataDetailMap.put(curTableName, items);
+                continue;
+            }
             String sql = String.format("select * from %s where master_id between %d and %d", tableNames.get(i) + "_detail", startRowIDs.get(i), endRowIDs.get(i));
             helper.executeQuery(sql, null, callback);
         }
@@ -44,6 +50,7 @@ public class TaskGetDataDetail {
     class Callback implements JDBCHelper.QueryCallback {
 
         public void process(ResultSet rs) throws Exception {
+            ArrayList<DataDetailItem> items = new ArrayList<DataDetailItem>();
             while (rs.next()) {
                 int rowID = rs.getInt(1);
                 int masterID = rs.getInt(2);
@@ -80,8 +87,9 @@ public class TaskGetDataDetail {
                         essid5,
                         essid6
                 );
-                dataItems.add(dataItem);
+                items.add(dataItem);
             }
+            dataDetailMap.put(curTableName, items);
         }
     }
 }
