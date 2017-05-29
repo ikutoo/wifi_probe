@@ -17,11 +17,15 @@ public class Constants {
     public static final String JDBC_URL_PROD = "jdbc_url_prod";
     public static final String JDBC_USER_PROD = "jdbc_user_prod";
     public static final String JDBC_PASSWORD_PROD = "jdbc_password_prod";
-    //临时表
+    //数据表
     public static final String TABLE_USER = "table_user";
-    public static final String  TABLE_EQUIPMENT =   "table_equipment";
+    public static final String TABLE_EQUIPMENT = "table_equipment";
+    public static final String TABLE_DEVICEDATA = "table_deviceData";
+    public static final String TABLE_VISITS = "table_visits";
+    public static final String TABLE_CUSTOMERS = "table_customers";
     //运行参数
     public static final String PROCCESS_INTERVAL = "proccess_interval";
     public static final String PULL_INTERVAL = "pull_interval";
+    public static final String DBMONITOR_INTERVAL = "dbMonitor_interval";
     public static final String INSTORE_DISTANCE = "instore_distance";
 }

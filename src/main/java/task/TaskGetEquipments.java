@@ -3,7 +3,7 @@ package task;
 import conf.ConfigurationManager;
 import constants.Constants;
 import dataStructs.Equipment;
-import util.JDBCHelper;
+import utils.JDBCHelper;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;

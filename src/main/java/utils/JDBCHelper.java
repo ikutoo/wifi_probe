@@ -1,4 +1,4 @@
-package util;
+package utils;
 import conf.ConfigurationManager;
 import constants.Constants;
 import java.sql.Connection;
@@ -106,14 +106,38 @@ public class JDBCHelper {
                 datasource.push(conn);
             }
         }
-
-
-
-
-
     }
 
+    /**
+     * 执行SQL语句
+     * @param sql
+     * @param params
+     */
+    public void execute(String sql,Object[] params){
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        Boolean rs = null;
 
+        try {
+            conn = getConnection();
+            pstmt = conn.prepareStatement(sql);
+
+            if(params != null && params.length > 0) {
+                for(int i = 0; i < params.length; i++) {
+                    pstmt.setObject(i + 1, params[i]);
+                }
+            }
+
+            rs = pstmt.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if(conn != null) {
+                datasource.push(conn);
+            }
+        }
+    }
 
     /**
      * 静态内部类：查询回调接口

@@ -3,8 +3,7 @@ package task;
 import conf.ConfigurationManager;
 import constants.Constants;
 import dataStructs.DataItem;
-import scala.runtime.StringFormat;
-import util.JDBCHelper;
+import utils.JDBCHelper;
 
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;

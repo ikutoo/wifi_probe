@@ -1,17 +1,5 @@
 package test;
 
-import dataStructs.DataDetailItem;
-import dataStructs.DataItem;
-import dataStructs.Equipment;
-import dataStructs.User;
-import task.TaskGetDataDetail;
-import task.TaskGetEquipments;
-import task.TaskGetRecentData;
-import task.TaskGetUser;
-import util.JDBCHelper;
-
-import java.util.ArrayList;
-
 /**
  * Created by Administrator on 2017-05-20.
  */
@@ -38,5 +26,26 @@ public class AccessDB {
 //      val rddDataItems = sc.parallelize(arrDataItems)
 //      val rddDataDetailTiems = sc.parallelize(arrDataDetailItems)
 //      SparkUtils.loadDataToTmpTable(sc, sql, rddDataItems, rddDataDetailTiems)
+
+//        //更新customer表
+//        for (i <- 0 to inDataDetailItems.size() - 1) {
+//            val random = new Random()
+//
+//            val customerID = inDataDetailItems.get(i).getMac
+//            val visitTimes = random.nextInt(60) + 1
+//            val avgStayTime = random.nextInt(360)
+//            var bOldCustomer = 1
+//            if (visitTimes == 1)
+//                bOldCustomer = 0
+//            val avgVisitCircle = random.nextInt(100)
+//            var livenessLevel = random.nextInt(3) + 1
+//            if (visitTimes < 10)
+//                livenessLevel = 1
+//
+//            val customer = new Customer(deviceID, customerID, visitTimes, avgStayTime, bOldCustomer, avgVisitCircle, livenessLevel)
+//            val taskUpdateCustomer = new TaskUpdateCustomer(customer)
+//
+//            taskUpdateCustomer.run()
+//        }
     }
 }

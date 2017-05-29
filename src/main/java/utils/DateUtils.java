@@ -1,5 +1,6 @@
-package util;
+package utils;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,5 +24,10 @@ public class DateUtils {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date(time);
         return format.format(date);
+    }
+
+    public static Timestamp removeMinAndSec(Timestamp timeStamp) {
+        Timestamp ts = new Timestamp((timeStamp.getTime() / (3600 * 1000)) * 3600 * 1000);
+        return ts;
     }
 }

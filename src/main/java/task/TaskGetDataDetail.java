@@ -1,7 +1,7 @@
 package task;
 
 import dataStructs.DataDetailItem;
-import util.JDBCHelper;
+import utils.JDBCHelper;
 
 import java.sql.ResultSet;
 import java.sql.Timestamp;

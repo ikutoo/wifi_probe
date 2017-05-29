@@ -1,13 +1,10 @@
 package task;
 
-import conf.ConfigurationManager;
 import dataStructs.DataItem;
-import constants.Constants;
-import util.JDBCHelper;
+import utils.JDBCHelper;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by Administrator on 2017-05-21.

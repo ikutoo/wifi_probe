@@ -5,7 +5,7 @@ import java.util.Timer
 import conf.ConfigurationManager
 import constants.Constants
 import timer.TimerProcessData
-import util.JDBCHelper
+import utils.JDBCHelper
 
 /**
   * Created by Administrator on 2017-05-24.

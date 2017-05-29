@@ -5,7 +5,7 @@ import java.util.TimerTask
 import dataStructs.{DataDetailItem, DataItem}
 import global.DataPool
 import task.{TaskGetEquipments, TaskProcessData, TaskPullData}
-import util.SparkUtils
+import utils.SparkUtils
 import java.util
 
 /**
